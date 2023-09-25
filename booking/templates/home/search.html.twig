@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+ {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+<h1 class="h3 mb-3 font-weight-normal text-center">Welcome</h1>
+<a href="{{ path('accomodation') }}">Accomodation</a>
+
+    {% for line in accomodations %}
+    {% set dist=line["dist"] %}
+    {% set accomodation=line[0] %}
+       <div class="card" style="width: 18rem;">
+  
+  <div class="card-body">
+    <h5 class="card-title">{{accomodation.title}}</h5>
+      <h5 class="card-title">{{accomodation.id}}</h5>
+    <p class="card-text">adresse:{{ accomodation.address }} </p>
+    <p class="card-text"> {{accomodation.city}} {{dist}}</p>
+    <p class="card-text">nbr de place:{{ accomodation.getPeopleMax}}</p>
+    
+
+    {# <ul>
+         {% for room in accomodations.rooms %}
+            <li>{{room.description}}</li>
+          {% endfor %}
+    </ul> #}
+  </div>
+</div>
+        
+    {% endfor %}
+{% endblock %}
