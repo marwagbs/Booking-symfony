@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookingController!{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var route = "{{ path('api_calendar', {'id': accomodation.id})}}";
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js"></script>
+    <script defer src="{{ asset('js/calendar.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css' rel='stylesheet'/>
+{% endblock %}
+{% block body %}
+<div clas"container">
+{{ form_start(formBooking) }}
+    {{ form_rest(formBooking) }}
+    <button class="btn btn-primary" type="submit">Réserver</button>
+{{ form_end(formBooking) }}
+</div>
+
+<div id="calendar"></div>
+{% endblock %}
