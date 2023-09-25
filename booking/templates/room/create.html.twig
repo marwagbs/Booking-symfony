@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create room!{% endblock %}
+   {% block javascripts %}
+       <script defer src="{{ asset('js/RoomCollection.js') }}"></script>
+   {% endblock %}
+
+{% block body %}
+
+<div class="container">
+<div id="formContainer" data-index={{ roomForm.roomBeds|length }} data-template='{{ form_widget(roomForm.roomBeds.vars.prototype) }} <button type="button" class="btn btn-dark removeBed">Supprimer</button>'>
+    {{ form_start(roomForm) }}
+    {{form_row(roomForm.description) }}
+    <div id="roomCollection">
+        {% for roomBed in roomForm.roomBeds %}
+            <div>
+                {{ form_row(roomBed.quantity) }}
+                {{ form_row(roomBed.bed) }}
+                <button type="button" class="btn btn-dark removeBed">Supprimer</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="btn-dark btn" type="submit">Créer</button>
+    <button class="btn btn-primary " id="addButton" type="button">Ajouter un lit</button>
+    {{ form_end(roomForm) }}
+</div>
+</div>
+
+
+
+{% endblock %}
