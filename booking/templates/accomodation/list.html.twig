@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Accomodation{% endblock %}
+
+{% block body %}
+{% if app.user %}
+        <div class="mb-3">
+             <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+{% endif %}
+
+    {% for accomodation in accomodations %}
+        <p >id {{ accomodation.id }}</p>
+        <p >adress {{ accomodation.address }} {{accomodation.city}}</p>
+        <a href={{path('accomodation_edit',{id:accomodation.id})}}>modifier</a>
+         <a href={{path('accomodation_remove',{id:accomodation.id})}}>Supprimer</a>
+    {% endfor %}
+  
+{% endblock %}
