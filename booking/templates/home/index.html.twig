@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+ {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+<h1 class="h3 mb-3 font-weight-normal text-center">Welcome</h1>
+<a href="{{ path('accomodation_list') }}">Accomodation</a>
+<div class="container">
+ <form class="d-flex justify-content-around m-2" action="{{ path('search') }}">
+      <input class="form-control mr-sm-2"  placeholder="City" name="city" id="search" aria-label="Search">
+      <input class="form-control mr-sm-2"  placeholder="Quantiy"  id="quantity" aria-label="quantiy" name="people">
+      <input class="form-control mr-sm-2"  placeholder="startDate"  id="startDate" aria-label="startDate" name="startDate" type="date">
+      <input class="form-control mr-sm-2"  placeholder="endDate"  id="endDate" aria-label="endDate" name="endDate" type="date">
+       <button class="btn btn-outline-success" type="submit">Search</button>
+       
+</form>
+ {% for accomodation in accomodations %}
+ <div class="card" style="width: 18rem;">
+         <div class="card-body">
+    <h5 class="card-title">{{accomodation.title}}</h5>
+    <p class="card-text">{{ accomodation.address }} {{accomodation.city}}</p>
+    <a href={{path('app_booking',{id:accomodation.id})}} class="btn btn-primary">Reserver</a>
+  </div>
+
+
+        
+       
+   </div>      
+    {% endfor %}
+
+</div>
+
+{% endblock %}
