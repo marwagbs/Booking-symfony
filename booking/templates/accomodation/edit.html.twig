@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Accomodation{% endblock %}
+
+{% block body %}
+  
+     {% if app.user %}
+        <div class="mb-3">
+            <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+
+    {% endif %}
+    <div class="container">
+    <h1 class="m-3 font-weight-normal text-center">Create Accomodation</h1>
+
+    {{ form_start(form) }}
+       
+            {{form_rest(form)}}
+        <button type="submit" class="btn btn-primary mb-3">mettre à jour</button>
+    {{ form_end(form) }}
+    
+   </div>
+    <div class="mb-3">
+           <a href="{{ path('accomodation') }}">Retour</a>
+        </div>
+{% endblock %}
